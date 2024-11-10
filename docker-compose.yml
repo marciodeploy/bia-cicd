@@ -1,10 +1,24 @@
-services:
-  server:
-    env_file: .env
-    image: 864981753284.dkr.ecr.us-east-1.amazonaws.com/meddiflux:latest
-    ports:
-      - mode: ingress
-        target: 8080
-        published: "80"
-        protocol: tcp
+RUN docker-compose down --rmi all
 
+FROM node:21-slim
+
+RUN npm install -g npm@latest --loglevel=error
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install --loglevel=error
+
+COPY . .
+
+RUN REACT_APP_API_URL=https://meddifluxp.hardcloud.com.br SKIP_PREFLIGHT_CHECK=true npm run build --prefix client
+
+RUN mv client/build build
+
+RUN rm  -rf client/*
+
+RUN mv build client/
+
+EXPOSE 8080
+
+CMD [ "npm", "start" ]
