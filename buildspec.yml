@@ -22,6 +22,6 @@ phases:
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Gerando artefato da imagem para o Elastic Beanstalk
-      - printf '[{"name":"current-server-1","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - zip -r meddiflux.zip docker-compose.yml  
 artifacts:
-    files: imagedefinitions.json
+    files: meddiflux.zip
