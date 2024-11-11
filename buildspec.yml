@@ -21,6 +21,6 @@ phases:
       - echo Fazendo push da imagem para o ECR...
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
-      - aws s3 sync client/build s3://assetseb/$AMBIENTE --exclude "index.html"
+      - aws s3 sync client/build s3://assetseb/prod --exclude "index.html"
 artifacts:
     files: docker-compose.yml
