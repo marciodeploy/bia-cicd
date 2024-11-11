@@ -21,7 +21,6 @@ phases:
       - echo Fazendo push da imagem para o ECR...
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
-      - REACT_APP_API_URL=https://meddifluxp.hardcloud.com.br SKIP_PREFLIGHT_CHECK=true npm run build --prefix client
       - aws s3 sync client/build s3://assetseb/prod --exclude "index.html"
       - aws s3 sync client/build s3://assetseb/prod --exclude "*" --include "index.html"
 artifacts:
