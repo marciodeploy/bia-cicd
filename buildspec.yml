@@ -12,7 +12,7 @@ phases:
   build:
     commands:
       - echo Build iniciado em `date`
-      - echo Gerando imagem da BIA...
+      - echo Gerando imagem da MEDDIFLUX...
       - docker build -t $REPOSITORY_URI:latest .
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
   post_build:
@@ -22,8 +22,8 @@ phases:
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - npm install  
-      - NODE_OPTIONS=--openssl-legacy-provider REACT_APP_API_URL=https://meddifluxh.hardcloud.com.br SKIP_PREFLIGHT_CHECK=true npm run build --prefix client
-      - aws s3 sync client/build s3://assetseb/homo --exclude "index.html"
-      - aws s3 sync client/build s3://assetseb/homo --exclude "*" --include "index.html"
+      - NODE_OPTIONS=--openssl-legacy-provider REACT_APP_API_URL=https://meddifluxp.hardcloud.com.br SKIP_PREFLIGHT_CHECK=true npm run build --prefix client
+      - aws s3 sync client/build s3://assetseb/prod --exclude "index.html"
+      - aws s3 sync client/build s3://assetseb/prod --exclude "*" --include "index.html"
 artifacts:
     files: docker-compose.yml
