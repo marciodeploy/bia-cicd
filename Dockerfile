@@ -9,7 +9,7 @@ RUN npm install --loglevel=error
 
 COPY . .
 
-echo $ambienteurl
+RUN echo $ambienteurl
 
 RUN NODE_OPTIONS=--openssl-legacy-provider REACT_APP_API_URL=$ambienteurl SKIP_PREFLIGHT_CHECK=true npm run build --prefix client
 
