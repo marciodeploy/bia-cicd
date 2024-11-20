@@ -11,7 +11,9 @@ COPY . .
 
 RUN echo $ambienteurl
 
-RUN NODE_OPTIONS=--openssl-legacy-provider REACT_APP_API_URL=https://meddifluxh.hardcloud.com.br SKIP_PREFLIGHT_CHECK=true npm run build --prefix client
+RUN NODE_OPTIONS=--openssl-legacy-provider REACT_APP_API_URL=$ambienteurl SKIP_PREFLIGHT_CHECK=true npm run build --prefix client
+
+#RUN NODE_OPTIONS=--openssl-legacy-provider REACT_APP_API_URL=https://meddifluxh.hardcloud.com.br SKIP_PREFLIGHT_CHECK=true npm run build --prefix client
 
 RUN mv client/build build
 
