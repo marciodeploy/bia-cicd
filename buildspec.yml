@@ -23,7 +23,7 @@ phases:
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - npm install  
       - NODE_OPTIONS=--openssl-legacy-provider REACT_APP_API_URL=https://meddifluxh.hardcloud.com.br SKIP_PREFLIGHT_CHECK=true npm run build --prefix client
-      - aws s3 sync client/build s3://assetseb/homo --exclude "index.html"
-      - aws s3 sync client/build s3://assetseb/homo --exclude "*" --include "index.html"
+      - aws s3 sync client/build s3://assetseb/$ambientes3cdn --exclude "index.html"
+      - aws s3 sync client/build s3://assetseb/$ambientes3cdn --exclude "*" --include "index.html"
 artifacts:
     files: docker-compose.yml
