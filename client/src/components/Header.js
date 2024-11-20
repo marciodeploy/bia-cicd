@@ -20,7 +20,7 @@ const Header = ({ title, onAdd, showAdd }) => {
 };
 
 Header.defaultProps = {
-  title: "MEDDIFLUX CI/CD V1911-5 - HOMO",
+  title: "MEDDIFLUX CI/CD V241120-1",
 };
 
 export default Header;
