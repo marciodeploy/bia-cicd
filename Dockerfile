@@ -9,7 +9,9 @@ RUN npm install --loglevel=error
 
 COPY . .
 
-RUN NODE_OPTIONS=--openssl-legacy-provider REACT_APP_API_URL=https://meddifluxp.hardcloud.com.br SKIP_PREFLIGHT_CHECK=true npm run build --prefix client
+echo $ambienteurl
+
+RUN NODE_OPTIONS=--openssl-legacy-provider REACT_APP_API_URL=$ambienteurl SKIP_PREFLIGHT_CHECK=true npm run build --prefix client
 
 RUN mv client/build build
 
