@@ -25,8 +25,8 @@ phases:
       - echo $githash
       - echo $ambienteurl
       - echo $ambientes3cdn 
-      - sed "s/meddiflux:latest/meddiflux:$githash/g" docker-compose-dev.yml > docker-compose2.yml
-      - cat docker-compose-dev.yml
+      - sed "s/meddiflux:latest/meddiflux:$githash/g" docker-compose-modelo.yml > docker-compose2.yml
+      - cat docker-compose-modelo.yml
       - cat docker-compose2.yml  
       - npm install
       - NODE_OPTIONS=--openssl-legacy-provider REACT_APP_API_URL=$ambienteurl SKIP_PREFLIGHT_CHECK=true npm run build --prefix client
