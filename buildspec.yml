@@ -22,7 +22,7 @@ phases:
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - versao=${CODEBUILD_RESOLVED_SOURCE_VERSION:0:7}
-      - echo "Versão do commit: $versao"
+      - echo $versao
       - echo $ambienteurl
       - echo $ambientes3cdn  
       - npm install
