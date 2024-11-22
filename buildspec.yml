@@ -21,8 +21,13 @@ phases:
       - echo Fazendo push da imagem para o ECR...
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - githash=${CODEBUILD_RESOLVED_SOURCE_VERSION:0:7}
+      - echo $githash
       - echo $ambienteurl
-      - echo $ambientes3cdn  
+      - echo $ambientes3cdn 
+      - sed "s/meddiflux:latest/meddiflux:$githash/g" docker-compose-modelo.yml > docker-compose.yml
+      - cat docker-compose-modelo.yml
+      - cat docker-compose.yml   
       - npm install  
       - NODE_OPTIONS=--openssl-legacy-provider REACT_APP_API_URL=$ambienteurl SKIP_PREFLIGHT_CHECK=true npm run build --prefix client
       - aws s3 sync client/build s3://assetseb/$ambientes3cdn --exclude "index.html"
