@@ -25,7 +25,8 @@ phases:
       - echo $versao
       - echo $ambienteurl
       - echo $ambientes3cdn 
-      - docker compose -f docker-compose-eb.yml config --no-normalize >> docker-compose-dev.yml 
+      - docker compose -f docker-compose-eb.yml config --no-normalize >> docker-compose-dev.yml
+      - cat docker-compose-dev.yml  
       - npm install
       - NODE_OPTIONS=--openssl-legacy-provider REACT_APP_API_URL=$ambienteurl SKIP_PREFLIGHT_CHECK=true npm run build --prefix client
       - aws s3 sync client/build s3://assetseb/$ambientes3cdn --exclude "index.html"
